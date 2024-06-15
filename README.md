@@ -1,2 +1,3 @@
-# rust_devcontainer_template
-Template repo with a simple rust development environment in a devcontainer
+# Description
+
+A small repo for trying out [Tauri](https://tauri.app).
