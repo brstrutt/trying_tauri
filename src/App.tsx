@@ -7,8 +7,27 @@ function App() {
   const [name, setName] = useState("");
 
   async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
+    setGreetMsg("Loading...");
+    try {
+      setGreetMsg(await invoke("greet", { name }));
+    }
+    catch(error: any) {
+      setGreetMsg("Error: " + error as string);
+    }
+  }
+
+  const [isPrime, setIsPrime] = useState("");
+  const [numToCheck, setNumToCheck] = useState<number | undefined>(undefined);
+
+  async function checkPrime() {
+    setIsPrime("Loading...");
+    try {
+      let result: boolean = await invoke("is_prime", { number: numToCheck });
+      setIsPrime(result.toString());
+    }
+    catch(error: any) {
+      setIsPrime("Error: " + error as string);
+    }
   }
 
   return (
@@ -31,6 +50,24 @@ function App() {
       </form>
 
       <p>{greetMsg}</p>
+
+      <form
+        className="row"
+        onSubmit={(e) => {
+          e.preventDefault();
+          checkPrime();
+        }}
+      >
+        <input
+          id="prime-input"
+          type="number"
+          onChange={(e) => setNumToCheck(parseInt(e.currentTarget.value))}
+          placeholder="Enter a number..."
+        />
+        <button type="submit">Is Prime?</button>
+      </form>
+
+      <p>{isPrime}</p>
     </div>
   );
 }

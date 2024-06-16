@@ -28,7 +28,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "cargo install create-tauri-app --locked && sudo apt update && sudo apt install -y libwebkit2gtk-4.0-dev librsvg2-dev",
+	"postCreateCommand": "cargo install create-tauri-app --locked && cargo install tauri-cli && sudo apt update && sudo apt install -y libwebkit2gtk-4.0-dev librsvg2-dev",
 	"customizations": {
 		"vscode": {
 			"extensions": [
