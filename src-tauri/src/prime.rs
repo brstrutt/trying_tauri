@@ -1,4 +1,5 @@
 
+#[tauri::command]
 pub fn is_prime(number: i32) -> bool {
     if number < 2 { return false; }
     if number < 4 { return true; }
